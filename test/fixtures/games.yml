@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: games
+#
+#  id           :integer          not null, primary key
+#  number       :integer
+#  player1_race :string(255)
+#  player2_race :string(255)
+#  map          :string(255)
+#  winner       :string(255)
+#  video        :string(255)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  number: 1
+  player1_race: MyString
+  player2_race: MyString
+  map: MyString
+  winner: MyString
+  video: MyString
+
+two:
+  number: 1
+  player1_race: MyString
+  player2_race: MyString
+  map: MyString
+  winner: MyString
+  video: MyString
