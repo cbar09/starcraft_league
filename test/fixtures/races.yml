@@ -1,18 +1,17 @@
 # == Schema Information
 #
-# Table name: players
+# Table name: races
 #
 #  id         :integer          not null, primary key
-#  handle     :string(255)
 #  name       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-require 'test_helper'
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-class PlayerTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-end
+one:
+  name: MyString
+
+two:
+  name: MyString

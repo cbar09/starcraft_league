@@ -1,18 +1,17 @@
 # == Schema Information
 #
-# Table name: games
+# Table name: matches_players
 #
 #  id         :integer          not null, primary key
-#  number     :integer
+#  player_id  :integer
 #  match_id   :integer
-#  map_id     :integer
-#  video      :string(255)
+#  winner     :boolean
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Game < ActiveRecord::Base
-  belongs_to :map
+class MatchesPlayer < ActiveRecord::Base
+  belongs_to :player
   belongs_to :match
-  attr_accessible :map, :number, :match_id, :map_id, :video
+  attr_accessible :match_id, :player_id, :winner
 end

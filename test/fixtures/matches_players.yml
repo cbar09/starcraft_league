@@ -1,9 +1,11 @@
 # == Schema Information
 #
-# Table name: matches
+# Table name: matches_players
 #
 #  id         :integer          not null, primary key
-#  week       :date
+#  player_id  :integer
+#  match_id   :integer
+#  winner     :boolean
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -11,15 +13,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  id: 1
-  player1: MyString
-  player2: MyString
-  winner: MyString
-  week: 2012-08-10
+  player_id: 1
+  match_id: 1
+  winner: false
 
 two:
-  id: 1
-  player1: MyString
-  player2: MyString
-  winner: MyString
-  week: 2012-08-10
+  player_id: 1
+  match_id: 1
+  winner: false

@@ -2,15 +2,13 @@
 #
 # Table name: games
 #
-#  id           :integer          not null, primary key
-#  number       :integer
-#  player1_race :string(255)
-#  player2_race :string(255)
-#  map          :string(255)
-#  winner       :string(255)
-#  video        :string(255)
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id         :integer          not null, primary key
+#  number     :integer
+#  match_id   :integer
+#  map_id     :integer
+#  video      :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

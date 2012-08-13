@@ -11,17 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120810204323) do
+ActiveRecord::Schema.define(:version => 20120812021444) do
 
   create_table "games", :force => true do |t|
     t.integer  "number"
-    t.string   "player1_race"
-    t.string   "player2_race"
-    t.string   "map"
-    t.string   "winner"
+    t.integer  "match_id"
+    t.integer  "map_id"
     t.string   "video"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "games_players", :force => true do |t|
+    t.integer  "player_id"
+    t.integer  "game_id"
+    t.integer  "race_id"
+    t.boolean  "winner"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "maps", :force => true do |t|
@@ -31,16 +38,27 @@ ActiveRecord::Schema.define(:version => 20120810204323) do
   end
 
   create_table "matches", :force => true do |t|
-    t.string   "player1"
-    t.string   "player2"
-    t.string   "winner"
     t.date     "week"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "matches_players", :force => true do |t|
+    t.integer  "player_id"
+    t.integer  "match_id"
+    t.boolean  "winner"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "players", :force => true do |t|
     t.string   "handle"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "races", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

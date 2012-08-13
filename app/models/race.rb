@@ -1,18 +1,14 @@
 # == Schema Information
 #
-# Table name: players
+# Table name: races
 #
 #  id         :integer          not null, primary key
-#  handle     :string(255)
 #  name       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-require 'test_helper'
-
-class PlayerTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class Race < ActiveRecord::Base
+  has_many :games, :through => :games_players
+  attr_accessible :name
 end

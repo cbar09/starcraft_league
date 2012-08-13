@@ -1,4 +1,10 @@
 StarcraftLeague::Application.routes.draw do
+  resources :races
+
+  resources :matches_players
+
+  resources :games_players
+
   resources :maps
 
   resources :games
