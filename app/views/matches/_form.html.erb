@@ -1,32 +1,11 @@
-<%= form_for @match, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :player1, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :player1, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :player2, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :player2, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :winner, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :winner, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :week, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.date_select :week, :class => 'date_select' %>
-    </div>
-  </div>
-
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                matches_path, :class => 'btn' %>
-  </div>
+<%= simple_form_for @match, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.association :players, :as => :check_boxes, :hint => 'Choose 2 Players' %>
+  <%= f.input :week, :label => "Week starting on...", :as => :string, :hint => 'Weeks start on Monday...', :input_html => { 'data-behavior' => 'datepicker'}  %>
+  <%= f.button :submit, :class => 'btn-primary' %>
 <% end %>
+
+<script type="text/javascript">
+	$(document).on("focus", "[data-behavior~='datepicker']", function(e){
+	    $(this).datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true});
+	});
+</script>

@@ -15,11 +15,13 @@ ActiveRecord::Schema.define(:version => 20120812021444) do
 
   create_table "games", :force => true do |t|
     t.integer  "number"
-    t.integer  "match_id"
-    t.integer  "map_id"
+    t.string   "player1_race"
+    t.string   "player2_race"
+    t.string   "map"
+    t.string   "winner"
     t.string   "video"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "games_players", :force => true do |t|
@@ -38,6 +40,9 @@ ActiveRecord::Schema.define(:version => 20120812021444) do
   end
 
   create_table "matches", :force => true do |t|
+    t.string   "player1"
+    t.string   "player2"
+    t.string   "winner"
     t.date     "week"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

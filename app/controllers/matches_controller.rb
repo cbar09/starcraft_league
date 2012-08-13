@@ -24,6 +24,7 @@ class MatchesController < ApplicationController
   # GET /matches/new
   # GET /matches/new.json
   def new
+    @players = Player.all
     @match = Match.new
 
     respond_to do |format|

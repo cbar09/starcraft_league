@@ -1,3 +1,7 @@
+<% p1 = @match.players[0]; %>
+<% p2 = @match.players[1]; %>
+<% winner = "match in progress" %>
+
 <%- model_class = Match -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
@@ -5,11 +9,11 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:player1) %>:</strong></dt>
-  <dd><%= @match.player1 %></dd>
+  <dd><%= @match.players[0].handle %></dd>
   <dt><strong><%= model_class.human_attribute_name(:player2) %>:</strong></dt>
-  <dd><%= @match.player2 %></dd>
+  <dd><%= @match.players[1].handle %></dd>
   <dt><strong><%= model_class.human_attribute_name(:winner) %>:</strong></dt>
-  <dd><%= @match.winner %></dd>
+  <dd><%= winner %></dd>
   <dt><strong><%= model_class.human_attribute_name(:week) %>:</strong></dt>
   <dd><%= @match.week %></dd>
 </dl>

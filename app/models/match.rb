@@ -10,6 +10,7 @@
 
 class Match < ActiveRecord::Base
   has_many :games
+  has_many :matches_players
   has_many :players, :through => :matches_players
-  attr_accessible :week
+  attr_accessible :week, :player_ids
 end

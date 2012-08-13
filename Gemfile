@@ -21,9 +21,13 @@ group :assets do
   
   gem 'twitter-bootstrap-rails'
   
+  gem 'bootstrap-datepicker-rails'
+  
 end
 
 gem 'jquery-rails'
+
+gem 'simple_form'
 
 group :development do
   gem 'annotate', '2.5.0'
