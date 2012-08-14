@@ -1,7 +1,8 @@
 <%= simple_form_for @match, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.association :players, :as => :check_boxes, :hint => 'Choose 2 Players' %>
-  <%= f.input :week, :label => "Week starting on...", :as => :string, :hint => 'Weeks start on Monday...', :input_html => { 'data-behavior' => 'datepicker'}  %>
-  <%= f.button :submit, :class => 'btn-primary' %>
+  	<%= f.association :players, :as => :check_boxes, :hint => 'Choose 2 Players' %>
+	<%= f.input :week, :as =>  :select, :collection => (1..10), :include_blank => 'Choose a week...' %>
+  	<%#= f.input :week, :label => "Week starting on...", :as => :string, :hint => 'Weeks start on Monday...', :input_html => { 'data-behavior' => 'datepicker'}  %>
+<%= f.button :submit, :class => 'btn-primary' %>
 <% end %>
 
 <script type="text/javascript">

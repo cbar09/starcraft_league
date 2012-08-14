@@ -14,5 +14,8 @@
 class Game < ActiveRecord::Base
   belongs_to :map
   belongs_to :match
+  has_many :players, :through => :games_players
+  has_many :games_players
   attr_accessible :map, :number, :match_id, :map_id, :video
+  
 end

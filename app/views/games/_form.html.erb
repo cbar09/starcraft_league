@@ -1,6 +1,11 @@
-<%= Match.find(:all, :include => [ :players ]) %>
+<%- matches = {} %>
+<%- Match.all.each { |m| matches[m.display] = m.id } %>
+
 <%= simple_form_for @game, :html => { :class => 'form-horizontal' } do |f| %>
-	<%= f.association :match, :collection => Match.find(:all, :include => [ :matches_players ]) %>
-	<%= f.association :map %>
-  	s<%= f.button :submit, :class => 'btn-primary' %>
+	<%= f.association :match, :collection => matches, :include_blank => 'Select Match...' %>
+	<%= f.association :map, :include_blank => 'Select Map...' %>
+	<%= f.association :race, :include_blank => 'Select Players...' %>
+  	<%= f.input :game_number, :as => :radio_buttons, :collection => (1..5).map {|i| "Game " + i.to_s} %>
+	<%= f.input :video_link %>
+	<%= f.button :submit, :class => 'btn-primary' %>
 <% end %>

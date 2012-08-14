@@ -15,5 +15,5 @@ class GamesPlayer < ActiveRecord::Base
   belongs_to :player
   belongs_to :game
   belongs_to :race
-  attr_accessible :match_id, :player_id, :race_id, :winner
+  attr_accessible :player_id, :race_id, :winner
 end

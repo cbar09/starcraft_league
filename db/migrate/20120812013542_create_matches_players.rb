@@ -3,7 +3,6 @@ class CreateMatchesPlayers < ActiveRecord::Migration
     create_table :matches_players do |t|
       t.integer :player_id
       t.integer :match_id
-      t.boolean :winner
 
       t.timestamps
     end
