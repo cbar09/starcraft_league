@@ -2,6 +2,7 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
+	
 <table class="table table-striped">
   <thead>
     <tr>
@@ -15,6 +16,7 @@
   </thead>
   <tbody>
     <% @matches.each do |match| %>
+		<%= match.matches_players %>
       <tr>
         <td><%= link_to match.id, match_path(match) %></td>
         <td><%= link_to match.players[0].handle, player_path(match.players[0].id) %></td>

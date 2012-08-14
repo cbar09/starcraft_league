@@ -13,4 +13,8 @@ class Match < ActiveRecord::Base
   has_many :matches_players
   has_many :players, :through => :matches_players
   attr_accessible :week, :player_ids
+  
+  def find_herbivores
+      self.player.find(:all);
+  end
 end
