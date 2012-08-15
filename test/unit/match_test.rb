@@ -3,7 +3,7 @@
 # Table name: matches
 #
 #  id         :integer          not null, primary key
-#  week       :date
+#  week       :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

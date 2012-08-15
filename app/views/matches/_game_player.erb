@@ -1,0 +1,5 @@
+<%= f.simple_fields_for game_player do |games_player| %>
+	<%= games_player.association :player, :as => :hidden, :input_html => {:value => player.handle} %>
+	<%= games_player.association :race, :label => player.handle + "'s race", :as => :select %>
+	<%= games_player.input :winner, :label => false, :inline_label => 'Winner?', :input_html => {:class => 'winner'} %>
+<% end %>

@@ -36,6 +36,12 @@ class MatchesController < ApplicationController
   # GET /matches/1/edit
   def edit
     @match = Match.find(params[:id])
+    @p1 = @match.players[0]
+    @p2 = @match.players[1] 
+    5.times do 
+      game = @match.games.build
+      2.times {game.games_players.build}
+    end
   end
 
   # POST /matches

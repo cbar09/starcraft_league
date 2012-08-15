@@ -1,4 +1,6 @@
 StarcraftLeague::Application.routes.draw do
+  resources :divisions
+
   resources :races
 
   resources :matches_players

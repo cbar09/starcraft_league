@@ -1,12 +1,24 @@
 <%= simple_form_for @match, :html => { :class => 'form-horizontal' } do |f| %>
-  	<%= f.association :players, :as => :check_boxes, :hint => 'Choose 2 Players' %>
+  	<%= f.association :players, :as => :check_boxes, :label_method => lambda { |player| "#{player.handle}"}, :hint => '*Choose 2 Players' %>
 	<%= f.input :week, :as =>  :select, :collection => (1..10), :include_blank => 'Choose a week...' %>
-  	<%#= f.input :week, :label => "Week starting on...", :as => :string, :hint => 'Weeks start on Monday...', :input_html => { 'data-behavior' => 'datepicker'}  %>
-<%= f.button :submit, :class => 'btn-primary' %>
+	
+	<!-- Games -->
+	<%= @match.games.each.with_index do |game, i| %>
+		<%= f.simple_fields_for game do |builder| %>
+			<%= render "game", :game_number => i, :f => builder, :game => game %>
+		<% end %>
+	<% end %>
+	
+	<%= f.button :submit, :class => 'btn-primary' %>
 <% end %>
 
 <script type="text/javascript">
-	$(document).on("focus", "[data-behavior~='datepicker']", function(e){
-	    $(this).datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true});
+	$(document).on("click", ".winner", function(e){
+		if($(this).is(":checked")){
+			$(this).closest("fieldset").find(".winner").not($(this)).attr("disabled", "disabled");
+		}
+		else{
+			$(this).closest("fieldset").find(".winner").removeAttr("disabled");
+		}
 	});
 </script>

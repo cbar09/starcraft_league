@@ -5,7 +5,6 @@
 #  id         :integer          not null, primary key
 #  player_id  :integer
 #  match_id   :integer
-#  winner     :boolean
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

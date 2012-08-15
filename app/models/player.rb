@@ -10,9 +10,10 @@
 #
 
 class Player < ActiveRecord::Base
+  belongs_to :division
   has_many :matches_players
   has_many :games_players
   has_many :matches, :through => :matches_players
   has_many :games, :through => :games_players
-  attr_accessible :handle, :name
+  attr_accessible :handle, :name, :division_id
 end
