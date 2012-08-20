@@ -32,7 +32,7 @@ class Match < ActiveRecord::Base
   end
   
   def state
-    #return games.find
+    return "In progress"
   end
   
 end
