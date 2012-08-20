@@ -3,10 +3,10 @@
 	<%= f.input :week, :as =>  :select, :collection => (1..10), :include_blank => 'Choose a week...' %>
 	
 	<!-- Games -->
-	<%= @match.games.each.with_index do |game, i| %>
-		<%= f.simple_fields_for game do |builder| %>
-			<%= render "game", :game_number => i, :f => builder, :game => game %>
-		<% end %>
+	<% count = 1 %>
+	<%= f.simple_fields_for :games do |builder| %>
+		<%= render "game", :game_number => count, :f => builder %>
+		<% count = count + 1 %>
 	<% end %>
 	
 	<%= f.button :submit, :class => 'btn-primary' %>
@@ -20,5 +20,9 @@
 		else{
 			$(this).closest("fieldset").find(".winner").removeAttr("disabled");
 		}
+	});
+	$(document).on("change", ".race", function(e){
+		checked = $(this).find("option:selected");
+		checked.closest("fieldset").find("option[value='" + checked.val() + "']").not(checked).attr("disabled", "disabled")
 	});
 </script>

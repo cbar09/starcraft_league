@@ -9,12 +9,14 @@
 #
 
 class Match < ActiveRecord::Base
-  belongs_to :race
   has_many :games
   has_many :matches_players
   has_many :players, :through => :matches_players
-  attr_accessible :week, :player_ids, :race_id, :game_ids
-  accepts_nested_attributes_for :games
+  
+  accepts_nested_attributes_for :games, :players
+  
+  attr_accessible :week, :player_ids, :players_attributes, :games_attributes
+  
   
   
   def display

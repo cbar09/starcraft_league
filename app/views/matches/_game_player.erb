@@ -1,5 +1,22 @@
-<%= f.simple_fields_for game_player do |games_player| %>
-	<%= games_player.association :player, :as => :hidden, :input_html => {:value => player.handle} %>
-	<%= games_player.association :race, :label => player.handle + "'s race", :as => :select %>
-	<%= games_player.input :winner, :label => false, :inline_label => 'Winner?', :input_html => {:class => 'winner'} %>
-<% end %>
+	<%= f.association :player, 
+		:label => first ? 'Player A' : 'Player B', 
+		:input_html => {:class => 'span2', :value => player.handle}, 
+		:as => :string,
+		:disabled => true  %>
+	
+	<%= f.association :race, 
+		:label => first ? "Player A's Race" : "Player B's Race", 
+		:as => :select, 
+		:input_html => {:class => 'span2 race'}, 
+		:include_blank => 'Select a race...' 
+	%>
+	
+	<%= f.input :winner, 
+		:label => false,
+		:inline_label => 'Winner?', 
+		:input_html => {:class => 'winner'}
+	%>
+	
+	<script type="text/javascript">
+	document.on()
+	</script>
