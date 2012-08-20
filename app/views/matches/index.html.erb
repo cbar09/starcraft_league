@@ -10,12 +10,14 @@
     	<% (1..4).each do |i| %>
 			<th>Match <%= i %></th>
 		<% end %>
+		<th>Byes</th>
 	</tr>
   </thead>
   <tbody>
 	<%	(1..10).each do |i| %>
 		<%	next_week = Match.where("week = '#{i}'") %>
-			<tr><td>Week <%= i %></td>
+		<tr>
+			<td><strong>Week <%= i %></strong></td>
 			<% next_week.each do |match| %>
 				<td>
 					<%= link_to match.players[0].handle, player_path(match.players[0].id) %>
@@ -36,14 +38,25 @@
 					</div>
 				</td>
 			<% end %>
+			
 			<% (1..(4 - next_week.length)).each do |i| %>
-				<td>TBD</td>
+				<td>TBD<br/><br/>
+					<%= link_to "New Match",
+					            new_match_path,
+					            :class => 'btn btn-mini btn-primary' %>
+					
+					</td>
 			<% end %>
-			</tr>
-		<% end %> 
+			
+			<td>
+				<ul>
+				<% Match.byes(i).each_pair do |k,v| %>
+					<li><%= link_to k, player_path(v) %></li>
+				<% end %>
+				</ul>
+			</td>
+		</tr>
+	<% end %> 
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_match_path,
-            :class => 'btn btn-primary' %>

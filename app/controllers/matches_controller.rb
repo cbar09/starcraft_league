@@ -1,4 +1,6 @@
 class MatchesController < ApplicationController
+  layout "no_sideboard"
+  
   # GET /matches
   # GET /matches.json
   def index
@@ -38,10 +40,10 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
     @p1 = @match.players[0]
     @p2 = @match.players[1] 
-    5.times do 
-      game = @match.games.build
-      2.times {game.games_players.build}
-    end
+    #5.times do 
+    #  game = @match.games.build
+    #  2.times {game.games_players.build}
+    #end
   end
 
   # POST /matches

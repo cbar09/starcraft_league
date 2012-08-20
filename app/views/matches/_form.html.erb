@@ -3,12 +3,10 @@
 	<%= f.input :week, :as =>  :select, :collection => (1..10), :include_blank => 'Choose a week...' %>
 	
 	<!-- Games -->
-	<% count = 1 %>
 	<%= f.simple_fields_for :games do |builder| %>
-		<%= render "game", :game_number => count, :f => builder %>
-		<% count = count + 1 %>
+		<%= render "game_fields", :f => builder %>
 	<% end %>
-	
+	<%= link_to_add_fields "Add Game", f, :games %>
 	<%= f.button :submit, :class => 'btn-primary' %>
 <% end %>
 

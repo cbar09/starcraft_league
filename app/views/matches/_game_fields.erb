@@ -1,6 +1,6 @@
 <fieldset>
-	<legend>Game <%= game_number %></legend>
-	<%= f.input :game_number, :as => :hidden, :input_html => {:value => game_number} %>
+	<legend>Game <%= @match.games.length %></legend>
+	<%= f.input :game_number, :as => :hidden, :input_html => {:value => @match.games.length} %>
 	
 	<div class="row">
 	<% first = true %>
