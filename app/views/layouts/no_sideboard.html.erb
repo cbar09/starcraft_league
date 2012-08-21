@@ -10,33 +10,16 @@
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <a class="brand" href="/">The Charlottesville Starcraft League</a>
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li><%= link_to "Full Schedule", matches_path %></li>
-            <li><%= link_to "Players", players_path %></li>
-			<li><%= link_to "Maps", maps_path %></li>
-			<li><%= link_to "Races", races_path %></li>
-            <li><%= link_to "About" %></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="span12"><%= yield %></div>
-    </div>
-  </div>
-</body>
+	<body>
+		<!-- Nav Bar -->
+	  	<%= render "/layouts/nav" %>
+	  	
+		<div class="container">
+			<!-- Flash Message Partial -->
+			<%= render "/layouts/flash", :flash => flash %>
+	 
+	 	   	<!-- Main Content Area -->
+	    	<div class="row"><div class="span12"><%= yield %></div></div>
+	  	</div>
+	</body>
 </html>

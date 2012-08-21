@@ -16,4 +16,6 @@ class Player < ActiveRecord::Base
   has_many :matches, :through => :matches_players
   has_many :games, :through => :games_players
   attr_accessible :handle, :name, :division_id
+  
+  validates_presence_of :division_id, :handle
 end

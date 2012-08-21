@@ -3,13 +3,12 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
 	
-<table class="table table-striped">
+<table class="table table-striped table-bordered">
   <thead>
-	<tr>
-		<th>Week</th>
-    	<% (1..4).each do |i| %>
-			<th>Match <%= i %></th>
-		<% end %>
+	<tr class="centered">
+		<th></th>
+		<th colspan="2">Division A Matches</th>
+		<th colspan="2">Division B Matches</th>
 		<th>Byes</th>
 	</tr>
   </thead>
@@ -27,20 +26,21 @@
 					<div><strong><%= match.state %></strong></div>
 					<br/>
 					<div>
-					
-		          	<%= link_to 'Report Results',
-		            		edit_match_path(match), :class => 'btn btn-primary btn-mini' %>
-		          	<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+						<%= link_to edit_match_path(match), :class => 'btn btn-primary btn-mini' do %>
+							<i class="icon-edit"></i> Report Results
+						<% end %>
+		          		<%= link_to(
 		                      match_path(match),
 		                      :method => :delete,
 		                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-		                      :class => 'btn btn-mini btn-danger' %>
+		                      :class => 'btn btn-mini btn-danger') do %>
+							  <i class="icon-trash"></i> Delete Match<% end %>
 					</div>
 				</td>
 			<% end %>
 			
 			<% (1..(4 - next_week.length)).each do |i| %>
-				<td>TBD<br/><br/>
+				<td><br/><br/>TBD<br/><br/>
 					<%= link_to "New Match",
 					            new_match_path,
 					            :class => 'btn btn-mini btn-primary' %>

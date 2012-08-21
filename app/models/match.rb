@@ -17,6 +17,8 @@ class Match < ActiveRecord::Base
   
   attr_accessible :week, :player_ids, :games_attributes
   
+  validates_presence_of :week, :player_ids
+  
   def display
     return "[week " + week.to_s + "] " + p1.handle + " vs " + p2.handle
   end

@@ -1,6 +1,17 @@
 <%= simple_form_for @match, :html => { :class => 'form-horizontal' } do |f| %>
-  	<%= f.association :players, :as => :check_boxes, :label_method => lambda { |player| "#{player.handle}"}, :hint => '*Choose 2 Players' %>
-	<%= f.input :week, :as =>  :select, :collection => (1..10), :include_blank => 'Choose a week...' %>
+	
+	<%= f.association :players, 
+		:as => :check_boxes, 
+		:label_method => lambda { |player| "#{player.handle}"}, 
+		:hint => '*Choose 2 Players', :class => 'players',
+		:input_html => {:class => 'player'}
+	%>
+	
+	<%= f.input :week, 
+		:as => :select, 
+		:collection => (1..10), 
+		:include_blank => 'Choose a week...' 
+	%>
 	
 	<!-- Games -->
 	<%= f.simple_fields_for :games do |builder| %>
@@ -18,9 +29,17 @@
 		else{
 			$(this).closest("fieldset").find(".winner").removeAttr("disabled");
 		}
-	});
-	$(document).on("change", ".race", function(e){
+	})
+	.on("change", ".race", function(e){
 		checked = $(this).find("option:selected");
 		checked.closest("fieldset").find("option[value='" + checked.val() + "']").not(checked).attr("disabled", "disabled")
+	})
+	.on("change", ".player", function(e){
+		if($('.player:checked').length == 2){
+			$('.player').not(':checked').attr('disabled', 'disabled');
+		}
+		else{
+			$('.player').not(':checked').removeAttr('disabled');
+		}
 	});
 </script>
