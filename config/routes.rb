@@ -1,5 +1,5 @@
 StarcraftLeague::Application.routes.draw do
-  resources :divisions, :races, :maps, :matches, :players, :users
+  resources :divisions, :races, :maps, :matches, :players, :users, :identities
   
   root :to => 'players#index' #route homepage to players
   
