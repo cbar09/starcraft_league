@@ -1,4 +1,6 @@
 class DivisionsController < ApplicationController
+  before_filter :authorize, :except => [:index, :show]
+  
   # GET /divisions
   # GET /divisions.json
   def index

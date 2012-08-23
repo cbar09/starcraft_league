@@ -16,33 +16,38 @@
           	<li><%= link_to "About" %></li>
         </ul>
 		<ul class="nav pull-right">
-			<% if current_user %>
+			<% if user_signed_in? %>
 				<li id="fat-menu" class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<%= current_user.name %> <b class="caret"></b>
+						Logged in as <strong><%= current_user.email %></strong> <b class="caret"></b>
 					</a>
 					<ul class="dropdown-menu">
 						<li>
-			    			<%= link_to users_path(current_user.id) do %>
-								<i class="icon-user icon-white"></i> Profile
+			    			<%= link_to(edit_user_registration_path) do %>
+								<i class="icon-user icon-white"></i> Edit Profile
 							<% end %>
 						</li>
-						<li>
-			    			<%= link_to users_path(current_user.id) do %>
-								<i class="icon-cog icon-white"></i> Settings
-							<% end %>
-						</li>
+						<% if admin? %>
+							<li>
+				    			<%= link_to users_path(current_user.id) do %>
+									<i class="icon-cog icon-white"></i> Admin Settings
+								<% end %>
+							</li>
+						<% end %>
 						<li class="divider"></li>
 						<li>
-							<%= link_to(signout_path) do %>
-								 <i class="icon-remove-sign"></i> Sign out
+							<%= link_to(destroy_user_session_path, method: :delete) do %>
+								 <i class="icon-remove-sign"></i> Logout
 							<% end %>
 						</li>
 			    	</ul>
 				</li>
 			<% else %>	
 				<li id="fat-menu" class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> Sign In <b class="caret"></b></a>
+					<%= link_to(new_user_session_path) do %>
+					Admin Login &rarr;
+					<% end %>
+					<!--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> Sign In <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li>
 			    			<%= link_to("/auth/twitter") do %>
@@ -59,7 +64,7 @@
 							<i class="icon-facebook"></i> Register
 							<% end %>
 						</li>
-			    	</ul>
+			    	</ul>-->
 				</li>
 			<% end %>
 		</ul>

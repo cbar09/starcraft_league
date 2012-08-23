@@ -1,10 +1,19 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-private
-
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+protected
+   
+  def admin?
+    user_signed_in? && current_user.admin
   end
-  helper_method :current_user
+  
+  def authorize
+    unless admin?
+      flash[:error] = "Unauthorized access"
+      redirect_to "/"
+      false
+    end
+  end
+  
+  helper_method :admin?
 end

@@ -41,11 +41,8 @@
 			
 			<% (1..(4 - next_week.length)).each do |i| %>
 				<td><br/><br/>TBD<br/><br/>
-					<%= link_to "New Match",
-					            new_match_path,
-					            :class => 'btn btn-mini btn-primary' %>
-					
-					</td>
+					<%= link_to "New Match", new_match_path, :class => 'btn btn-mini btn-primary' unless !admin? %>
+				</td>
 			<% end %>
 			
 			<td>

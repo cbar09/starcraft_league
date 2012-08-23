@@ -1,4 +1,6 @@
 class RacesController < ApplicationController
+  before_filter :authorize, :except => [:index, :show]
+ 
   # GET /races
   # GET /races.json
   def index

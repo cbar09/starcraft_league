@@ -1,4 +1,6 @@
 class MapsController < ApplicationController
+  before_filter :authorize, :except => [:index, :show]
+  
   # GET /maps
   # GET /maps.json
   def index

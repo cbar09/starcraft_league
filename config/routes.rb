@@ -1,13 +1,14 @@
 StarcraftLeague::Application.routes.draw do
-  resources :divisions, :races, :maps, :matches, :players, :users, :identities
+
+  get "static_pages/about"
+
+  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
+
+  resources :divisions, :races, :maps, :matches, :players, :users, :identities, :messages
   
   root :to => 'players#index' #route homepage to players
   
   match 'schedule' => 'matches#index' #route for schedule page
-    
-  match 'auth/:provider/callback', to: 'sessions#create'
-  match 'auth/failure', to: redirect('/')
-  match 'signout', to: 'sessions#destroy', as: 'signout'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

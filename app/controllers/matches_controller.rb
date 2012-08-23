@@ -1,4 +1,6 @@
 class MatchesController < ApplicationController
+  before_filter :authorize, :except => [:index, :show]
+  
   layout "no_sideboard"
   
   # GET /matches

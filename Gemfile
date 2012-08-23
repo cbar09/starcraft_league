@@ -52,7 +52,4 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # To use debugger
 # gem 'debugger'
 
-gem 'omniauth-twitter' 
-gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
-gem 'omniauth-identity'
+gem 'devise'
