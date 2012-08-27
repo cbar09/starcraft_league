@@ -7,6 +7,7 @@
   <thead>
 	<tr class="centered">
 		<th></th>
+		<th>Map</th>
 		<th colspan="2">Division A Matches</th>
 		<th colspan="2">Division B Matches</th>
 		<th>Byes</th>
@@ -17,6 +18,7 @@
 		<%	next_week = Match.where("week = '#{i}'") %>
 		<tr>
 			<td><strong>Week <%= i %></strong></td>
+			<td></td>
 			<% next_week.each do |match| %>
 				<td>
 					<%= link_to match.players[0].handle, player_path(match.players[0].id) %>
