@@ -13,33 +13,17 @@
 		:include_blank => 'Choose a week...' 
 	%>
 	
-	<!-- Games -->
-	<%= f.simple_fields_for :games do |builder| %>
-		<%= render "game_fields", :f => builder %>
-	<% end %>
-	<%= link_to_add_fields "Add Game", f, :games %>
-	<%= f.button :submit, :class => 'btn-primary' %>
+	<div id="games">
+		<!-- Games -->
+		<%= f.simple_fields_for :games do |builder| %>
+			<%= render "game_fields", :f => builder %>
+		<% end %>
+	
+		<%= link_to "Add Game", :update => "games", 
+			{ :action => "add_game" },
+			{:remote => true, :id=> @match.id}
+			:html => {:class => 'btn btn-primary'},
+			:complete => "console.log(request.responseText)" %>
+	</div>
+	<%= f.button :submit, :class => 'btn btn-primary' %>
 <% end %>
-
-<script type="text/javascript">
-	$(document).on("click", ".winner", function(e){
-		if($(this).is(":checked")){
-			$(this).closest("fieldset").find(".winner").not($(this)).attr("disabled", "disabled");
-		}
-		else{
-			$(this).closest("fieldset").find(".winner").removeAttr("disabled");
-		}
-	})
-	.on("change", ".race", function(e){
-		checked = $(this).find("option:selected");
-		checked.closest("fieldset").find("option[value='" + checked.val() + "']").not(checked).attr("disabled", "disabled")
-	})
-	.on("change", ".player", function(e){
-		if($('.player:checked').length == 2){
-			$('.player').not(':checked').attr('disabled', 'disabled');
-		}
-		else{
-			$('.player').not(':checked').removeAttr('disabled');
-		}
-	});
-</script>

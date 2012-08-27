@@ -1,8 +1,6 @@
 class MatchesController < ApplicationController
   before_filter :authorize, :except => [:index, :show]
   
-  layout "no_sideboard"
-  
   # GET /matches
   # GET /matches.json
   def index
@@ -33,7 +31,7 @@ class MatchesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @match }
+      format.json { render json: ['match' => @match, 'players' => @players, 'params' => params] }
     end
   end
 
@@ -41,11 +39,18 @@ class MatchesController < ApplicationController
   def edit
     @match = Match.find(params[:id])
     @p1 = @match.players[0]
-    @p2 = @match.players[1] 
-    #5.times do 
-    #  game = @match.games.build
-    #  2.times {game.games_players.build}
-    #end
+    @p2 = @match.players[1]
+  end
+  
+  def add_game
+    @match = Match.find(params[:id])
+    game = @match.games.build
+    2.times {game.games_players.build} 
+    
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: ['match' => @match, 'players' => @players, 'params' => params] }
+    end
   end
 
   # POST /matches

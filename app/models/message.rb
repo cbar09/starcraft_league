@@ -1,12 +1,21 @@
 class Message < ActiveRecord::Base
 
-  attr_accessible :message, :title, :user_id, :type
+  attr_accessible :message, :title, :user_id, :alert
   belongs_to :user
   
-  types = {
-    "warning" => "alert-block",
-    "info" => "alert-info",
-    "success" => "alert-success",
-    "error" => "alert-error"
+  @@TYPES = {
+    "Warning" => "alert-block",
+    "Info" => "alert-info",
+    "Success" => "alert-success",
+    "Error" => "alert-error"
   }
+  
+  def self.types
+    @@TYPES
+  end
+  
+  def html_class
+    @@TYPES[alert]
+  end
+  
 end

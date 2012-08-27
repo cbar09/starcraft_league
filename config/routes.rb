@@ -6,7 +6,7 @@ StarcraftLeague::Application.routes.draw do
 
   resources :divisions, :races, :maps, :matches, :players, :users, :identities, :messages
   
-  root :to => 'players#index' #route homepage to players
+  root :to => 'static_pages#home' #route homepage to players
   
   match 'schedule' => 'matches#index' #route for schedule page
 

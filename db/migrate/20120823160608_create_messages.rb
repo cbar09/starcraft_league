@@ -4,7 +4,7 @@ class CreateMessages < ActiveRecord::Migration
       t.integer :user_id
       t.string :title
       t.text :message
-      t.string :type
+      t.string :alert
 
       t.timestamps
     end

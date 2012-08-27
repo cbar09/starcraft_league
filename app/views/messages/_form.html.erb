@@ -1,11 +1,11 @@
 <%= simple_form_for @message, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.association :user, :as => 'string', :disabled => true, :input_html => {:value => current_user.email} %>
-  <%= f.input :title %>
-  <%= f.input :message %>
-  <%= f.input :type, :as => 'select', :collection => %>
-  <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+  	<%= f.association :user, :as => 'string', :disabled => true, :input_html => {:value => current_user.email} %>
+  	<%= f.input :title %>
+	<%= f.input :alert, :label => "Message Type", :as => 'select', :collection => Message.types, :include_blank => "Default", :input_html => {:class => "input-medium"} %>
+  	<%= f.input :message %>
+  	<div class="form-actions">
+    	<%= f.button :submit, :class => 'btn-primary' %>
+    	<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 messages_path, :class => 'btn' %>
-  </div>
+  	</div>
 <% end %>
