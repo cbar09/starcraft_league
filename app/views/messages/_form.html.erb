@@ -2,6 +2,7 @@
   <%= f.association :user, :as => 'string', :disabled => true, :input_html => {:value => current_user.email} %>
   <%= f.input :title %>
   <%= f.input :message %>
+  <%= f.input :type, :as => 'select', :collection => %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

@@ -9,11 +9,8 @@
       <a class="brand" href="/">The Charlottesville Starcraft League</a>
       <div class="nav-collapse">
       	<ul class="nav">
-          	<li><%= link_to "Full Schedule", matches_path %></li>
-          	<li><%= link_to "Players", players_path %></li>
-			<li><%= link_to "Maps", maps_path %></li>
-			<li><%= link_to "Races", races_path %></li>
-          	<li><%= link_to "About" %></li>
+          	<li><%= link_to "Schedule", matches_path %></li>
+          	<li><%= link_to "Standings", divisions_path %></li>
         </ul>
 		<ul class="nav pull-right">
 			<% if user_signed_in? %>
@@ -24,13 +21,14 @@
 					<ul class="dropdown-menu">
 						<li>
 			    			<%= link_to(edit_user_registration_path) do %>
-								<i class="icon-user icon-white"></i> Edit Profile
+								Edit Profile
 							<% end %>
 						</li>
 						<% if admin? %>
+							<li><%= link_to "Maps", maps_path %></li>
 							<li>
-				    			<%= link_to users_path(current_user.id) do %>
-									<i class="icon-cog icon-white"></i> Admin Settings
+								<%= link_to(races_path) do %>
+									Races
 								<% end %>
 							</li>
 						<% end %>

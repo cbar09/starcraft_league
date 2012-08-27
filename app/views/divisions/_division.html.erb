@@ -1,0 +1,35 @@
+<h2><%= division.name %></h2>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Record</th>
+	  <th>Percentage</th>
+	  <th>Another Stat</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% division.players.each do |player| %>
+      <tr>
+        <td><%= link_to player.handle, player_path(player) %></td>
+        <td><%= (rand * 10).round %> - <%= (rand * 10).round %></td>
+		<td><%= (rand * 1000).round / 1000.0 %> </td>
+		<td></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_division_path(division), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      division_path(division),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new.player', :default => t("helpers.links.new player")),
+            new_player_path,
+            :class => 'btn btn-primary pull-right' %>
