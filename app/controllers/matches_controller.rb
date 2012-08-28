@@ -40,12 +40,11 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
     @p1 = @match.players[0]
     @p2 = @match.players[1]
-  end
-  
-  def add_game
-    @match = Match.find(params[:id])
-    game = @match.games.build
-    2.times {game.games_players.build} 
+    
+    if params[:addGame]
+      game = @match.games.build
+      2.times {game.games_players.build}
+    end
     
     respond_to do |format|
       format.html # new.html.erb

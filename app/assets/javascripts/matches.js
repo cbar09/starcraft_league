@@ -20,8 +20,8 @@ $(document).on("click", ".winner", function(e){
 	}
 });
 $(document).on('click', '.add-game', function(e){
-	$.getJSON("", {addGame: true}, function(data){
-		console.log(data);
-	});
-	return false;
+	time = new Date().getTime();
+	regexp = new RegExp($(this).data('id'), 'g');
+	$("#games").empty().prepend($(this).data('fields').replace(regexp, time)).append($(this));
+	e.preventDefault();
 });
