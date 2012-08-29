@@ -18,10 +18,7 @@ $(document).on("click", ".winner", function(e){
 	else{
 		$('.player').not(':checked').removeAttr('disabled');
 	}
-});
-$(document).on('click', '.add-game', function(e){
-	time = new Date().getTime();
-	regexp = new RegExp($(this).data('id'), 'g');
-	$("#games").empty().prepend($(this).data('fields').replace(regexp, time)).append($(this));
-	e.preventDefault();
+})
+.ready(function(){
+	
 });

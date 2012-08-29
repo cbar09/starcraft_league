@@ -5,10 +5,9 @@ module MatchesHelper
     2.times {game.games_players.build}
     
     id = "Game_#{match.games.length}"
-    game_number = @match.games.length
    
     games = f.simple_fields_for :games do |builder| 
-		  render "game_fields", :f => builder, :game_number => game_number
+		  render "game_fields", :f => builder, :game_number => match.games.length
     end
     
     link_to(name, '#', class: "add-game btn btn-primary", data: {id: id, fields: games.gsub("\n", "")})

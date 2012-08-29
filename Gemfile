@@ -53,3 +53,5 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'debugger'
 
 gem 'devise'
+
+gem 'cocoon'

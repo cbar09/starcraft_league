@@ -41,7 +41,7 @@ class MatchesController < ApplicationController
     @p1 = @match.players[0]
     @p2 = @match.players[1]
     
-    if params[:addGame]
+    (5 - @match.games.length).times do
       game = @match.games.build
       2.times {game.games_players.build}
     end

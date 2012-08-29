@@ -1,18 +1,18 @@
-	<%= f.association :player, 
-		:label => first ? 'Player A' : 'Player B', 
-		:input_html => {:class => 'span2', :value => player.handle}, 
-		:as => :string,
-		:disabled => true  %>
+	
+	<td>
+	<%= f.association :player, :as => :hidden, :input_html => {:class => 'span2', :value => player.handle} %>
 	
 	<%= f.association :race, 
-		:label => first ? "Player A's Race" : "Player B's Race", 
+		:label => false, 
 		:as => :select, 
 		:input_html => {:class => 'span2 race'}, 
 		:include_blank => 'Select a race...' 
 	%>
-	
+	</td>
+	<td>
 	<%= f.input :winner, 
 		:label => false,
 		:inline_label => 'Winner?', 
 		:input_html => {:class => 'winner'}
 	%>
+	</td>

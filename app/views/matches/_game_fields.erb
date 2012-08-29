@@ -1,20 +1,13 @@
-<fieldset>
-	<legend>Game <%= game_number %></legend>
-	<%= f.input :game_number, :as => :hidden, :input_html => {:value => game_number} %>
-	
-	<div class="row">
-	<% first = true %>
-	<%= f.simple_fields_for :games_players do |builder| %>
-		
-		<div class="span4">
-			<%= render "game_player", :f => builder, :first => first, :player => first ? @match.p1 : @match.p2  %>
-		</div>
-		<% if first %>
-			<% first = false %>
-			<div class="span1">
-				<strong style="font-size: 2em">VS</strong>
-			</div>
-		<% end %>
+<th>
+	<%= f.input :game_number, :as => :hidden, :input_html => {:value => num} %>
+	Game <%= num %>
+</th>
+<% first = true %>
+<%= f.simple_fields_for :games_players do |builder| %>
+	<%= render "game_player", :f => builder, :player => first ? @match.p1 : @match.p2 %>
+	<% if first %>
+		<td>VS.</td>
+		<% first = false %>
 	<% end %>
-	</span>
-</fieldset>
+<% end %>
+<td>Winner</td>

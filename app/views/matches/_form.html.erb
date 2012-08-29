@@ -14,17 +14,29 @@
 		:collection => (1..10), 
 		:include_blank => 'Choose a week...' 
 	%>
-	
-	<div id="games">
-		<% game_number = 1 %>
+	<table id="games" class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Game #</th>
+				<th colspan="2"><%= @match.p1.handle %></th>
+				<th>Vs.</th>
+				<th colspan="2"><%= @match.p2.handle %></th>
+				<th>Winner</th>
+			</tr>
+		</thead>
+		
 		<!-- Games -->
-		<%= f.simple_fields_for :games do |builder| %>
-			<%= render "game_fields", :f => builder, :game_number => game_number %>
-			<% game_number = game_number + 1 %>
-		<% end %>
-	
-		<%= link_to_games "Add Game", @match, f %>
-	</div>
+		<tbody>
+			<% index = 1 %>
+			<%= f.simple_fields_for :games do |game| %>
+				<tr class="game-<%= index %>">
+					<%= render "game_fields", :f => game, :num => index %>
+				</tr>
+				<% index = index + 1 %>
+			<% end %>
+		</tbody>
+		
+	</table>
 	<hr>
 	<%= f.button :submit, :class => 'btn btn-primary' %>
 <% end %>
