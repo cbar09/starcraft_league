@@ -15,7 +15,8 @@
   </thead>
   <tbody>
 	<%	(1..10).each do |i| %>
-		<%	next_week = Match.where("week = '#{i}'") %>
+		<% next_week = Match.where("week = '#{i}'").sort {|a,b| a.division <=> b.division} %>
+		
 		<tr>
 			<td><strong>Week <%= i %></strong></td>
 			<td></td>

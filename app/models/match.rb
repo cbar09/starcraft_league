@@ -35,6 +35,10 @@ class Match < ActiveRecord::Base
     return "In progress"
   end
   
+  def division 
+    return players[1].division.name
+  end
+  
   def self.byes(week)
     week_matches = Match.where("week = '#{week}'")
     players = {}
