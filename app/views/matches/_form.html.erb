@@ -14,6 +14,8 @@
 		:collection => (1..10), 
 		:include_blank => 'Choose a week...' 
 	%>
+	
+	<% if @match.games.length > 0 %>
 	<table id="games" class="table table-bordered table-striped">
 		<thead>
 			<tr>
@@ -38,5 +40,6 @@
 		
 	</table>
 	<hr>
+	<% end %>
 	<%= f.button :submit, :class => 'btn btn-primary' %>
 <% end %>

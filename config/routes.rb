@@ -9,6 +9,7 @@ StarcraftLeague::Application.routes.draw do
   root :to => 'static_pages#home' #route homepage to players
   
   match 'schedule' => 'matches#index' #route for schedule page
+    
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

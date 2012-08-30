@@ -20,5 +20,5 @@ $(document).on("click", ".winner", function(e){
 	}
 })
 .ready(function(){
-	
+	$("div.controls").first().find("label:eq(4)").after("<hr>")
 });
