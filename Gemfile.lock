@@ -35,7 +35,6 @@ GEM
     bootstrap-datepicker-rails (0.6.16)
       railties (>= 3.0)
     builder (3.0.0)
-    cocoon (1.0.22)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -138,7 +137,6 @@ DEPENDENCIES
   annotate (= 2.5.0)
   bcrypt-ruby (~> 3.0.0)
   bootstrap-datepicker-rails
-  cocoon
   coffee-rails (~> 3.2.1)
   devise
   jquery-rails
