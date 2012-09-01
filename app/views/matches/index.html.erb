@@ -15,7 +15,8 @@
   </thead>
   <tbody>
 	<%	(1..10).each do |i| %>
-		<%	next_week = Match.where("week = '#{i}'") %>
+		<% next_week = Match.where("week = '#{i}'").sort {|a,b| a.division <=> b.division} %>
+		
 		<tr>
 			<td><strong>Week <%= i %></strong></td>
 			<td></td>
@@ -27,6 +28,7 @@
 					<br/><br/>
 					<div><strong><%= match.state %></strong></div>
 					<br/>
+					<% admin? %>
 					<div>
 						<%= link_to edit_match_path(match), :class => 'btn btn-primary btn-mini' do %>
 							<i class="icon-edit"></i> Report Results
@@ -38,6 +40,7 @@
 		                    :class => 'btn btn-mini btn-danger') do %>
 							<i class="icon-trash"></i> Delete Match<% end %>
 					</div>
+					<% end %>
 				</td>
 			<% end %>
 			

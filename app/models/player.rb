@@ -18,4 +18,9 @@ class Player < ActiveRecord::Base
   attr_accessible :handle, :name, :division_id
   
   validates_presence_of :division_id, :handle
+  
+  def get_players(division_name)
+    division = Division.where("name = '#{division_name}'").first
+    return Player.where("division_id = '#{division.id}")
+  end
 end
