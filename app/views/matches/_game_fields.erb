@@ -2,6 +2,9 @@
 	<%= f.input :game_number, :as => :hidden, :input_html => {:value => num} %>
 	Game <%= num %>
 </th>
+<th>
+	<%= f.association :map, :include_blank => 'Choose a map...', :label => false, :input_html => {:class => 'span2 map'}  %>
+</th>
 <% first = true %>
 <%= f.simple_fields_for :games_players do |builder| %>
 	<%= render "game_player", :f => builder, :player => first ? @match.p1 : @match.p2 %>

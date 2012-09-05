@@ -4,10 +4,10 @@
 	<%= f.association :players, 
 		:as => :check_boxes, 
 		:label_method => lambda { |player| "#{player.handle}"}, 
-		:hint => '*Choose 2 Players', :class => 'players',
-		:input_html => {:class => 'player'},
-		:item_wrapper_class => 'inline'
+		:class => 'players',
+		:input_html => {:class => 'player'}
 	%>
+	<br/>
 	
 	<!-- Week Select Field -->
 	<%= f.input :week, 
@@ -17,10 +17,14 @@
 	%>
 
 	<% if @match.games.length > 0 %>
+	<div class="page-header">
+		<h2>Games</h2>
+	</div>
 	<table id="games" class="table table-bordered table-striped">
 		<thead>
 			<tr>
 				<th>Game #</th>
+				<th>Map</th>
 				<th colspan="2"><%= @match.p1.handle %></th>
 				<th>Vs.</th>
 				<th colspan="2"><%= @match.p2.handle %></th>
