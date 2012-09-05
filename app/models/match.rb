@@ -31,8 +31,25 @@ class Match < ActiveRecord::Base
     return players[1]
   end
   
+  def get_wins(player)
+    wins = 0
+    games.each do |game|
+      game.games_players.each do |game_player|
+        if game_player.winner && game_player.player_id == player_id
+          wins = wins + 1
+        end
+      end
+    end
+    return wins
+  end
+  
+  def get_winner
+    return get_wins(p1) == 3 ? p1 : (get_wins(p2) == 3 ? p2 : nil)
+  end
+  
   def state
-    return "In progress"
+    winner = get_winner
+    return winner.nil? ? "In Progress" : winner.handle + " won"
   end
   
   def division 
