@@ -9,11 +9,11 @@
 #
 
 class Match < ActiveRecord::Base
-  has_many :games
-  has_many :matches_players
+  has_many :games, :dependent => :destroy
+  has_many :matches_players, :dependent => :destroy
   has_many :players, :through => :matches_players
   
-  accepts_nested_attributes_for :games
+  accepts_nested_attributes_for :games, :reject_if => lambda { |a| a[:games_players_attributes].blank? }
   
   attr_accessible :week, :player_ids, :games_attributes
   
@@ -35,7 +35,7 @@ class Match < ActiveRecord::Base
     wins = 0
     games.each do |game|
       game.games_players.each do |game_player|
-        if game_player.winner && game_player.player_id == player_id
+        if game_player.winner && game_player.player_id == player.id
           wins = wins + 1
         end
       end

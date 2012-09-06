@@ -19,6 +19,32 @@ $(document).on("click", ".winner", function(e){
 		$('.player').not(':checked').removeAttr('disabled');
 	}
 })
+.on("change", ".winner", function(e){
+	box = $(this);
+	row = box.closest("tr");
+	
+	if(box.is(":checked")){
+		row.find("input[type='checkbox']").not(":checked").attr("disabled", "disabled")
+	}
+	else{
+		row.find("input[type='checkbox']").removeAttr("disabled");
+	}
+})
+.on("submit", "form[id^='edit_match']", function(e){
+	return $("tbody tr").each(function(i){
+		row = $(this);
+		if(!row.find(".winner:checked").length){
+			alert("No winner selected for game " + (i+1));
+			return false;
+		}
+	});
+})
 .ready(function(){
-	$("div.controls").first().find("label:eq(4)").after("<hr>")
+	$("div.controls").first().find("label:eq(4)").after("<hr>");
+	
+	//Disable all checkboxed in rows where winner is already checked
+	$(".winner:checked").each(function(i){ 
+		row = $(this).closest("tr"); 
+		row.find(".winner").not(":checked").attr("disabled", "disabled");
+	});
 });
