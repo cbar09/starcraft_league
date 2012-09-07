@@ -13,11 +13,23 @@ class Match < ActiveRecord::Base
   has_many :matches_players, :dependent => :destroy
   has_many :players, :through => :matches_players
   
-  accepts_nested_attributes_for :games, :reject_if => lambda { |a| a[:games_players_attributes].blank? }
+  accepts_nested_attributes_for :games, :reject_if => :invalid_game
   
   attr_accessible :week, :player_ids, :games_attributes
   
   validates_presence_of :week, :player_ids
+  #validates_associated :games => validate_game
+  
+  
+  def validate_game
+  end
+  
+  def invalid_game(attributes)
+      p1 = attributes["games_players_attributes"]["0"]
+      p2 = attributes["games_players_attributes"]["1"]
+      return p1["winner"] == p2["winner"] || p1["race_id"] == p2["race_id"]
+  end
+  
   
   def display
     return "[week " + week.to_s + "] " + p1.handle + " vs " + p2.handle

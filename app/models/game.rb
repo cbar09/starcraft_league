@@ -18,9 +18,7 @@ class Game < ActiveRecord::Base
   has_many :games_players, :dependent => :destroy
   attr_accessible :map_id, :game_number, :match_id, :video_link, :players_attributes, :games_players_attributes
   
-  accepts_nested_attributes_for :games_players, :reject_if => :invalid_game?
+  accepts_nested_attributes_for :games_players
   validates_presence_of :map_id, :game_number, :match_id
   
-  def valid_game?
-    
 end
