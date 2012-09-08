@@ -16,4 +16,5 @@ class GamesPlayer < ActiveRecord::Base
   belongs_to :game
   belongs_to :race
   attr_accessible :player_id, :race_id, :winner
+  validates_presence_of :race_id
 end

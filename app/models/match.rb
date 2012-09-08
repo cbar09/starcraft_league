@@ -9,15 +9,27 @@
 #
 
 class Match < ActiveRecord::Base
-  has_many :games
-  has_many :matches_players
+  has_many :games, :dependent => :destroy
+  has_many :matches_players, :dependent => :destroy
   has_many :players, :through => :matches_players
   
-  accepts_nested_attributes_for :games
+  accepts_nested_attributes_for :games, :reject_if => :invalid_game
   
   attr_accessible :week, :player_ids, :games_attributes
   
   validates_presence_of :week, :player_ids
+  #validates_associated :games => validate_game
+  
+  
+  def validate_game
+  end
+  
+  def invalid_game(attributes)
+      p1 = attributes["games_players_attributes"]["0"]
+      p2 = attributes["games_players_attributes"]["1"]
+      return p1["winner"] == p2["winner"] || p1["race_id"] == p2["race_id"]
+  end
+  
   
   def display
     return "[week " + week.to_s + "] " + p1.handle + " vs " + p2.handle
@@ -31,8 +43,25 @@ class Match < ActiveRecord::Base
     return players[1]
   end
   
+  def get_wins(player)
+    wins = 0
+    games.each do |game|
+      game.games_players.each do |game_player|
+        if game_player.winner && game_player.player_id == player.id
+          wins = wins + 1
+        end
+      end
+    end
+    return wins
+  end
+  
+  def get_winner
+    return get_wins(p1) == 3 ? p1 : (get_wins(p2) == 3 ? p2 : nil)
+  end
+  
   def state
-    return "In progress"
+    winner = get_winner
+    return winner.nil? ? "In Progress" : winner.handle + " won"
   end
   
   def division 

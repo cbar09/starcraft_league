@@ -28,7 +28,7 @@
 					<br/><br/>
 					<div><strong><%= match.state %></strong></div>
 					<br/>
-					<% admin? %>
+					<% if admin? %>
 					<div>
 						<%= link_to edit_match_path(match), :class => 'btn btn-primary btn-mini' do %>
 							<i class="icon-edit"></i> Report Results

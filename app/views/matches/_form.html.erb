@@ -4,10 +4,10 @@
 	<%= f.association :players, 
 		:as => :check_boxes, 
 		:label_method => lambda { |player| "#{player.handle}"}, 
-		:hint => '*Choose 2 Players', :class => 'players',
-		:input_html => {:class => 'player'},
-		:item_wrapper_class => 'inline'
+		:class => 'players',
+		:input_html => {:class => 'player'}
 	%>
+	<br/>
 	
 	<!-- Week Select Field -->
 	<%= f.input :week, 
@@ -17,30 +17,33 @@
 	%>
 
 	<% unless @match.games.empty %>
-		<table id="games" class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<th>Game #</th>
-					<th colspan="2"><%= @match.p1.handle %></th>
-					<th>Vs.</th>
-					<th colspan="2"><%= @match.p2.handle %></th>
-					<th>Winner</th>
+	<div class="page-header">
+		<h2>Games</h2>
+	</div>
+	<table id="games" class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Game #</th>
+				<th>Map</th>
+				<th colspan="2"><%= @match.p1.handle %></th>
+				<th>Vs.</th>
+				<th colspan="2"><%= @match.p2.handle %></th>
+			</tr>
+		</thead>
+		
+		<!-- Games -->
+		<tbody>
+			<% index = 1 %>
+			<%= f.simple_fields_for :games do |game| %>
+				<tr class="game-<%= index %>">
+					<%= render "game_fields", :f => game, :num => index %>
 				</tr>
-			</thead>
+				<% index = index + 1 %>
+			<% end %>
+		</tbody>
 		
-			<!-- Games -->
-			<tbody>
-				<% index = 1 %>
-				<%= f.simple_fields_for :games do |game| %>
-					<tr class="game-<%= index %>">
-						<%= render "game_fields", :f => game, :num => index %>
-					</tr>
-					<% index = index + 1 %>
-				<% end %>
-			</tbody>
-		
-		</table>
-		<hr>
+	</table>
+	<hr>
 	<% end %>
 	<%= f.button :submit, :class => 'btn btn-primary' %>
 <% end %>

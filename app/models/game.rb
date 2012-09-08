@@ -15,8 +15,10 @@ class Game < ActiveRecord::Base
   belongs_to :map
   belongs_to :match
   has_many :players, :through => :games_players
-  has_many :games_players
-  attr_accessible :map_id, :game_number, :match_id, :map_id, :video_link, :players_attributes, :games_players_attributes
+  has_many :games_players, :dependent => :destroy
+  attr_accessible :map_id, :game_number, :match_id, :video_link, :players_attributes, :games_players_attributes
   
   accepts_nested_attributes_for :games_players
+  validates_presence_of :map_id, :game_number, :match_id
+  
 end
