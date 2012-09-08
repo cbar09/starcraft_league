@@ -14,7 +14,7 @@
 	</tr>
   </thead>
   <tbody>
-	<%	(1..10).each do |i| %>
+	<% (1..10).each do |i| %>
 		<% next_week = Match.where("week = '#{i}'").sort {|a,b| a.division <=> b.division} %>
 		
 		<tr>
@@ -61,4 +61,3 @@
 	<% end %> 
   </tbody>
 </table>
-

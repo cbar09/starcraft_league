@@ -16,31 +16,31 @@
 		:include_blank => 'Choose a week...' 
 	%>
 
-	<% if @match.games.length > 0 %>
-	<table id="games" class="table table-bordered table-striped">
-		<thead>
-			<tr>
-				<th>Game #</th>
-				<th colspan="2"><%= @match.p1.handle %></th>
-				<th>Vs.</th>
-				<th colspan="2"><%= @match.p2.handle %></th>
-				<th>Winner</th>
-			</tr>
-		</thead>
-		
-		<!-- Games -->
-		<tbody>
-			<% index = 1 %>
-			<%= f.simple_fields_for :games do |game| %>
-				<tr class="game-<%= index %>">
-					<%= render "game_fields", :f => game, :num => index %>
+	<% unless @match.games.empty %>
+		<table id="games" class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Game #</th>
+					<th colspan="2"><%= @match.p1.handle %></th>
+					<th>Vs.</th>
+					<th colspan="2"><%= @match.p2.handle %></th>
+					<th>Winner</th>
 				</tr>
-				<% index = index + 1 %>
-			<% end %>
-		</tbody>
+			</thead>
 		
-	</table>
-	<hr>
+			<!-- Games -->
+			<tbody>
+				<% index = 1 %>
+				<%= f.simple_fields_for :games do |game| %>
+					<tr class="game-<%= index %>">
+						<%= render "game_fields", :f => game, :num => index %>
+					</tr>
+					<% index = index + 1 %>
+				<% end %>
+			</tbody>
+		
+		</table>
+		<hr>
 	<% end %>
 	<%= f.button :submit, :class => 'btn btn-primary' %>
 <% end %>
