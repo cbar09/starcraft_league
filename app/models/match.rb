@@ -12,10 +12,11 @@ class Match < ActiveRecord::Base
   has_many :games, :dependent => :destroy
   has_many :matches_players, :dependent => :destroy
   has_many :players, :through => :matches_players
+  belongs_to :season
   
   accepts_nested_attributes_for :games, :reject_if => :invalid_game
   
-  attr_accessible :week, :player_ids, :games_attributes
+  attr_accessible :week, :player_ids, :games_attributes, :season_id
   
   validates_presence_of :week, :player_ids
   #validates_associated :games => validate_game

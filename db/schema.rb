@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823185623) do
+ActiveRecord::Schema.define(:version => 20120918193644) do
 
   create_table "divisions", :force => true do |t|
     t.string   "name"
@@ -37,14 +37,6 @@ ActiveRecord::Schema.define(:version => 20120823185623) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "identities", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
   create_table "maps", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -53,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20120823185623) do
 
   create_table "matches", :force => true do |t|
     t.integer  "week"
+    t.integer  "season_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -64,10 +57,20 @@ ActiveRecord::Schema.define(:version => 20120823185623) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "mercury_images", :force => true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "messages", :force => true do |t|
     t.integer  "user_id"
     t.string   "title"
     t.text     "message"
+    t.string   "alert"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -84,6 +87,15 @@ ActiveRecord::Schema.define(:version => 20120823185623) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "seasons", :force => true do |t|
+    t.string   "name"
+    t.date     "start_date"
+    t.integer  "weeks"
+    t.integer  "playoff_weeks"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "users", :force => true do |t|

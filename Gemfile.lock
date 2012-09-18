@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/jejacks0n/mercury.git
+  revision: 8fd7f730298da4419805f67d7cf526342d54a09b
+  specs:
+    mercury-rails (0.8.0)
+      coffee-rails
+      railties (~> 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -35,6 +43,7 @@ GEM
     bootstrap-datepicker-rails (0.6.16)
       railties (>= 3.0)
     builder (3.0.0)
+    cocaine (0.3.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -71,6 +80,12 @@ GEM
     mime-types (1.19)
     multi_json (1.3.6)
     orm_adapter (0.4.0)
+    paperclip (3.2.0)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (>= 0.0.2)
+      mime-types
     pg (0.14.0)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -140,6 +155,8 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   jquery-rails
+  mercury-rails!
+  paperclip
   pg
   rails (= 3.2.8)
   sass-rails (~> 3.2.3)

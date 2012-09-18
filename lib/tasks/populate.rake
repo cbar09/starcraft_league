@@ -32,6 +32,24 @@ namespace :db do
       Player.create( :handle => p, :division_id => Division.where("name = 'Division B'").first.id )
     end
     
+    #Create Div1 Matches
+    #fxo = Player.where("handle ='#{divA[0]}'").first
+    #karak = Player.where("handle ='#{divA[1]}'").first
+    #goofy = Player.where("handle ='#{divA[2]}'").first
+    #dysentery = Player.where("handle ='#{divA[3]}'").first
+    #wellNamed = Player.where("handle ='#{divA[4]}'").first
+    
+    #D1 Matches
+    #Week 1 Karak vs. Dysentery
+    #Match.create()
+    
+    
+    #Div2 Players
+    #whiskey = Player.where("handle ='#{divB[0]}'").first
+    #sol = Player.where("handle ='#{divB[1]}'").first
+    #rock = Player.where("handle ='#{divB[2]}'").first
+    #wahoo = Player.where("handle ='#{divB[3]}'").first
+    #gospy = Player.where("handle ='#{divB[4]}'").first
     
     
   end

@@ -1,5 +1,13 @@
 StarcraftLeague::Application.routes.draw do
 
+  resources :seasons
+
+    namespace :mercury do
+      resources :images
+    end
+
+  mount Mercury::Engine => '/'
+
   get "static_pages/about"
 
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
