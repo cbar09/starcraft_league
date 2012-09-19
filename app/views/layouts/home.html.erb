@@ -19,14 +19,14 @@
 		<%= render "/layouts/flash", :flash => flash %>
 	  
 	    <div class="row">
-			<!-- About Us Partial -->
-			<div class="span3"><%= render "/messages/recent" %></div>
-		
 			<!-- Main Content -->
-	      	<div class="span6"><%= yield %></div>
-      	
-			<!-- About Us Partial -->
-			<div class="span3"><%= render "/layouts/about" %></div>
+	      	<div class="span9"><%= render "/matches/recent" %></div>
+	
+			<!-- Sidebar -->
+			<div class="span3">
+				<%= render "/messages/recent" %>
+				<%= render "/layouts/about" %>
+			</div>
 		</div>
 	</body>
 </html>
