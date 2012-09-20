@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20120823185623) do
     t.integer  "user_id"
     t.string   "title"
     t.text     "message"
+    t.string   "alert"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

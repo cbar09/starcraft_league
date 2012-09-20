@@ -32,7 +32,86 @@ namespace :db do
       Player.create( :handle => p, :division_id => Division.where("name = 'Division B'").first.id )
     end
     
+    #Create Matches According to Schedule
     
-    
+    #Week 1 
+    #Whiskypriest vs. Sol reader
+    =begin
+    Wahoopride
+    Gospy
+    2
+    3
+    Gospy
+    Rockmaninoff
+    2
+    4
+    Sol reader
+    Wahoopride
+    3
+    5
+    Wahoopride
+    Whiskypriest
+    3
+    6
+    Rockmaninoff
+    Sol reader
+    4
+    7
+    Sol reader
+    Gospy
+    4
+    8
+    Whiskypriest
+    Rockmaninoff
+    5
+    9
+    Rockmaninoff
+    Wahoopride
+    5
+    10
+    Gospy
+    Whiskypriest
+
+    1
+    1
+    Karak
+    Dysentery
+    1
+    2
+    Well named
+    Goofy
+    2
+    3
+    Goofy
+    Leenock
+    2
+    4
+    Dysentery
+    Well named
+    3
+    5
+    Well named
+    Karak
+    3
+    6
+    Leenock
+    Dysentery
+    4
+    7
+    Dysentery
+    Goofy
+    4
+    8
+    Karak
+    Leenock
+    5
+    9
+    Leenock
+    Well named
+    5
+    10
+    Goofy
+    Karak
+    =end
   end
 end
