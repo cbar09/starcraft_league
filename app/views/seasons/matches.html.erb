@@ -1,0 +1,69 @@
+<table class="table table-striped table-bordered">
+	<thead>
+		<tr>
+			<th style="width:300px;">Players</th>
+			<th>Week #</th>
+			<th colspan="2">Division 1 Matches</th>
+			<th colspan="2">Division 2 Matches</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+		<td rowspan="10">
+			<div class="alert alert-info">Drag names into matches table to set the season's schedule</div>
+			
+			<h4>Division A</h4>
+			<ol>
+			<% Player.division("Division A").each do |player| %>
+				<li>
+				<span class="draggable divA" data-player-id="<%= player.id %>"><%= player.handle %></span>
+				</li>
+			<% end %>
+			</ol>
+			
+			<hr />
+			
+			<h4>Division B</h4>
+			<ol>
+			<% Player.division("Division B").each do |player| %>
+				<li>
+				<span class="draggable divB" data-player-id="<%= player.id %>"><%= player.handle %></span>
+				</li>
+			<% end %>
+			</ol>
+			
+			<br/>
+			
+			<%= link_to "save", :class => 'btn btn-primary save' do %>
+				<i class="icon-edit"></i> Save Schedule
+			<% end %>
+		</td>
+		
+		<!-- Weeks -->
+		<% (1..10).each do |i| %>
+			<% unless i == 1 %><tr><% end %>
+				<td>Week <%= i %></td>
+			
+				<!-- Div A Matches -->
+				<% (1..2).each do |i| %>
+				<td class="match">
+					<div class="droppable divA">P1</div>
+					vs.
+					<div class="droppable divA">P2</div>
+				</td>
+				<% end %>
+			
+				<!-- Div B Matches -->
+				<% (1..2).each do |i| %>
+				<td class="match">
+					<div class="droppable divB">P1</div>
+					vs.
+					<div class="droppable divB">P2</div>
+				</td>
+				<% end %>
+			
+			</tr>
+		<% end %>
+	</tbody>
+</table>
