@@ -1,4 +1,5 @@
 <%= simple_form_for @match, :html => { :class => 'form-vertical' } do |f| %>
+	<%= f.association :season, :selected => 1 %>
 	
 	<!-- Players Checkbox List -->
 	<%= f.association :players, 
@@ -15,8 +16,7 @@
 		:collection => (1..10), 
 		:include_blank => 'Choose a week...' 
 	%>
-
-	<% unless @match.games.empty %>
+	<% unless @match.games.empty? %>
 	<div class="page-header">
 		<h2>Games</h2>
 	</div>

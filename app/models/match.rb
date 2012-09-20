@@ -12,14 +12,28 @@ class Match < ActiveRecord::Base
   has_many :games, :dependent => :destroy
   has_many :matches_players, :dependent => :destroy
   has_many :players, :through => :matches_players
+  belongs_to :season
   
   accepts_nested_attributes_for :games, :reject_if => :invalid_game
   
-  attr_accessible :week, :player_ids, :games_attributes
+  attr_accessible :week, :player_ids, :games_attributes, :season_id
   
   validates_presence_of :week, :player_ids
   #validates_associated :games => validate_game
   
+  #Gets Current Week's Matches
+  def self.current(season_id)
+    day_of_season = Date.today - Season.find(season_id).start_date
+    current_week = day_of_season >= 0 ? (day_of_season / 7) + 1 : 0 
+    where("week='#{current_week}'")
+  end
+  
+  #Gets Next Week's Matches
+  def self.upcoming(season_id)
+    day_of_season = Date.today - Season.find(season_id).start_date
+    current_week = day_of_season >= 0 ? (day_of_season / 7) + 1 : 0 
+    where("week='#{current_week + 1}'")
+  end
   
   def validate_game
   end
@@ -62,6 +76,18 @@ class Match < ActiveRecord::Base
   def state
     winner = get_winner
     return winner.nil? ? "In Progress" : winner.handle + " won"
+  end
+  
+  def in_progress?
+    return get_winner.nil? && !games.empty?
+  end
+  
+  def started?
+    return !games.empty?
+  end
+  
+  def completed?
+    return !get_winner.nil?
   end
   
   def division 

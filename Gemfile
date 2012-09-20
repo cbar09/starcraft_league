@@ -26,6 +26,8 @@ gem 'jquery-rails'
 
 gem 'simple_form'
 
+gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
+
 group :development do
   gem 'annotate', '2.5.0'
   gem 'sqlite3'
@@ -53,3 +55,4 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'debugger'
 
 gem 'devise'
+gem 'paperclip'

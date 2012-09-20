@@ -63,7 +63,7 @@ $(document).on("click", ".winner", function(e){
 	}
 })*/
 .ready(function(){
-	$("div.controls").first().find("label:eq(4)").after("<hr>");
+	$("label.checkbox:eq(4)").after("<hr style='width:150px'>");
 	
 	//Disable all checkboxed in rows where winner is already checked
 	$(".winner:checked").each(function(i){ 
