@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(:version => 20120918193644) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "identities", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "maps", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -45,7 +53,6 @@ ActiveRecord::Schema.define(:version => 20120918193644) do
 
   create_table "matches", :force => true do |t|
     t.integer  "week"
-    t.integer  "season_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
