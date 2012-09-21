@@ -19,37 +19,25 @@ $(document).ready(function(){
 	
 	$("a.save").click(function(evt){
 		evt.preventDefault();
-		
-		var matches = 0;
+		matches = {};
 		
 		$("td.match").each(function(i, elt){
 			var td = $(this);
-			var players = td.find(".filled").length;
+			var players = td.find(".filled");
 			
-			if(players == 2)
+			if(players.length == 2)
 			{
-				td.prepend($("<div>")
-					.addClass("alert alert-success")
-					.prepend($("<strong>").text("Successfully saved match"))
-				);
+				matches[i] = 
+					{
+						week: $(this).data("week"), 
+						p1: players.first().data("player-id"), 
+						p2: players.last().data("player-id")
+					}
 			}
-			else if(players == 1)
-			{
-				td.prepend($("<div>")
-					.addClass("alert alert-error")
-					.prepend($("<strong>").text("Match needs 2 players"))
-				);
-			}
-			else
-			{
-				td.prepend($("<div>")
-					.addClass("alert alert-warn")
-					.text("No match inputted")
-				);
-			}
-			
 		});
-		
-		alert(matches);
+		//console.log(matches);
+		jQuery.post(window.location.pathname, {matches: matches}, function(data){
+			console.log(data);
+		});
 	});
-})
+});

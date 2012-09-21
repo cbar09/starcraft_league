@@ -41,13 +41,13 @@
 		</td>
 		
 		<!-- Weeks -->
-		<% (1..10).each do |i| %>
-			<% unless i == 1 %><tr><% end %>
-				<td>Week <%= i %></td>
+		<% (1..10).each do |week| %>
+			<% unless week == 1 %><tr><% end %>
+				<td>Week <%= week %></td>
 			
 				<!-- Div A Matches -->
 				<% (1..2).each do |i| %>
-				<td class="match">
+				<td class="match" data-week="<%= week %>">
 					<div class="droppable divA">P1</div>
 					vs.
 					<div class="droppable divA">P2</div>
