@@ -80,4 +80,25 @@ class SeasonsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def matches
+    @season = Season.find(params[:id])
+    
+    if request.xhr?
+      #
+      Match.where("season_id='#{@season}'").delete_all()
+      
+      params[:matches].each do |m|
+        @match = Match.new({
+          :season_id => @season,
+          :week => m[1][:week],
+          :player_ids => [m[1][:p1], m[1][:p2]],
+        });
+        
+        @match.save  
+      end
+      render json: params
+    end
+    
+  end
 end

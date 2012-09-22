@@ -1,7 +1,5 @@
 StarcraftLeague::Application.routes.draw do
 
-  resources :seasons
-
     namespace :mercury do
       resources :images
     end
@@ -12,11 +10,13 @@ StarcraftLeague::Application.routes.draw do
 
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
 
-  resources :divisions, :races, :maps, :matches, :players, :users, :identities, :messages
+  resources :divisions, :races, :maps, :matches, :players, :users, :identities, :messages, :seasons
   
   root :to => 'static_pages#home' #route homepage to players
   
   match 'schedule' => 'matches#index' #route for schedule page
+  
+  match '/seasons/:id/matches' => 'seasons#matches'
     
 
   # The priority is based upon order of creation:

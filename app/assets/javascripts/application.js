@@ -15,3 +15,5 @@
 //= require twitter/bootstrap
 //= require_tree .
 //= require bootstrap-datepicker
+//= require jquery.ui.draggable
+//= require jquery.ui.droppable

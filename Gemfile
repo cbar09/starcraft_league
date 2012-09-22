@@ -14,11 +14,13 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier', '>= 1.0.3' #dependency gem
   
-  gem 'twitter-bootstrap-rails'
+  gem 'twitter-bootstrap-rails' #twitter bootstrap gem
   
-  gem 'bootstrap-datepicker-rails'
+  gem 'bootstrap-datepicker-rails' #bootstrap datepicker
+  
+  gem 'jquery-ui-rails' #jquery ui gem
   
 end
 
@@ -31,6 +33,7 @@ gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
 group :development do
   gem 'annotate', '2.5.0'
   gem 'sqlite3'
+  gem 'debugger'
   
 end
 
