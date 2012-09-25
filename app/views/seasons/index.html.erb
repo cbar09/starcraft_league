@@ -26,6 +26,8 @@
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_season_path(season), :class => 'btn btn-mini' %>
+		  <%= link_to t('.schedule', :default => t("helpers.links.schedule")),
+			           seasons_matches_path(:id => season.id), :class => 'btn btn-primary btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       season_path(season),
                       :method => :delete,

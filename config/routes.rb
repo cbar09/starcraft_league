@@ -16,7 +16,7 @@ StarcraftLeague::Application.routes.draw do
   
   match 'schedule' => 'matches#index' #route for schedule page
   
-  match '/seasons/:id/matches' => 'seasons#matches'
+  match '/seasons/:id/matches' => 'seasons#matches', :as => 'seasons_matches'
     
 
   # The priority is based upon order of creation:
