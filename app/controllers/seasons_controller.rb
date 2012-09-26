@@ -86,11 +86,11 @@ class SeasonsController < ApplicationController
     
     if request.xhr?
       #
-      Match.where("season_id='#{@season}'").delete_all()
+      Match.where("season_id='#{@season.id}'").delete_all()
       
       params[:matches].each do |m|
         @match = Match.new({
-          :season_id => @season,
+          :season_id => @season.id,
           :week => m[1][:week],
           :player_ids => [m[1][:p1], m[1][:p2]],
         });
