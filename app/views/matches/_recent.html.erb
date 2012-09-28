@@ -2,8 +2,8 @@
 	<!-- Current Matches -->
 	<div class="span3">
 		<div class="alert alert-info">
-			<h4>This Week's Matches</h4>
-			<ul>
+			<h3>This Week's Matches</h3>
+			<ul class="match-list">
 				<% Match.current(1).each do |match| %>
 				<li>
 					<%= link_to match.players[0].handle, player_path(match.players[0].id) %>
@@ -12,30 +12,12 @@
 				</li>
 			<% end %>
 			</ul>
-		</div>
-	</div>
-</div>
-	
-	<!-- Completed Matches -->
-	<div class="span3">
-		<div class="alert alert-success">
-			<h4>Completed Matches</h4>
-		</div>
-	</div>
-	
-	<!-- Upcoming Matches -->
-	<div class="span3">
-		<div class="alert alert-info">
-		<h4>Next Week's Matches</h4><br/>
-		<ul>
-		<% Match.upcoming(1).each do |match| %>
-			<li>
-				<%= link_to match.players[0].handle, player_path(match.players[0].id) %>
-				vs
-				<%= link_to match.players[1].handle, player_path(match.players[1].id) %>
-			</li>
-		<% end %>
-		</ul>
+			
+			<hr/>
+			<h4>Outstanding Matches</h4>
+			<ul class="match-list text-error">
+				<li>Match 1</li>
+			</ul>
 		</div>
 	</div>
 </div>
