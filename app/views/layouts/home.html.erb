@@ -19,12 +19,16 @@
 		<%= render "/layouts/flash", :flash => flash %>
 	  
 	    <div class="row">
-			<!-- Main Content -->
-	      	<div class="span9"><%= render "/matches/recent" %></div>
-	
-			<!-- Sidebar -->
+			<!-- Recent Matches -->
+	      	<div class="span3"><%= render "/matches/recent" %></div>
+			
+			<!-- Message Board -->
 			<div class="span3">
 				<%= render "/messages/recent" %>
+			</div>
+	
+			<!-- About Sidebar -->
+			<div class="span3">
 				<%= render "/layouts/about" %>
 			</div>
 		</div>
