@@ -23,14 +23,14 @@ class Match < ActiveRecord::Base
   
   #Gets Current Week's Matches
   def self.current(season_id)
-    day_of_season = Date.today - Season.find(season_id).start_date
+    day_of_season = (Date.today - Season.find(season_id).start_date).to_i
     current_week = day_of_season >= 0 ? (day_of_season / 7) + 1 : 0 
     where("week='#{current_week}'")
   end
   
   #Gets Next Week's Matches
   def self.upcoming(season_id)
-    day_of_season = Date.today - Season.find(season_id).start_date
+    day_of_season = (Date.today - Season.find(season_id).start_date).to_i
     current_week = day_of_season >= 0 ? (day_of_season / 7) + 1 : 0 
     where("week='#{current_week + 1}'")
   end
