@@ -96,7 +96,7 @@ end
   def score
     p1_wins = get_wins(p1)
     p2_wins = get_wins(p2)
-    return p1.handle + "#{p1.handle} (#{p1_wins}) - #{p2.handle} (#{p2_wins})" 
+    return "#{p1.handle} (#{p1_wins}) - #{p2.handle} (#{p2_wins})" 
   end
   
   def in_progress?
