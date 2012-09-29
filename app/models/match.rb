@@ -25,15 +25,26 @@ class Match < ActiveRecord::Base
   def self.current(season_id)
     day_of_season = (Date.today - Season.find(season_id).start_date).to_i
     current_week = day_of_season >= 0 ? (day_of_season / 7) + 1 : 0 
-    where("week='#{current_week}'")
+    where("season_id='#{season_id}' AND week='#{current_week}'")
   end
   
   #Gets Next Week's Matches
   def self.upcoming(season_id)
     day_of_season = (Date.today - Season.find(season_id).start_date).to_i
     current_week = day_of_season >= 0 ? (day_of_season / 7) + 1 : 0 
-    where("week='#{current_week + 1}'")
+    where("season_id='#{season_id}' AND week='#{current_week + 1}'")
   end
+  
+  #Gets Next Week's Matches
+  def self.outstanding(season_id)
+    day_of_season = (Date.today - Season.find(season_id).start_date).to_i
+    current_week = day_of_season >= 0 ? (day_of_season / 7) + 1 : 0 
+    outstanding_matches = []
+    where("season_id='#{season_id}' AND week<'#{current_week}'").each do |match|
+        outstanding_matches.push(match) unless match.completed?
+    end
+  return outstanding_matches
+end
   
   def validate_game
   end
@@ -47,6 +58,10 @@ class Match < ActiveRecord::Base
   
   def display
     return "[week " + week.to_s + "] " + p1.handle + " vs " + p2.handle
+  end
+  
+  def display_vs
+    return p1.handle + " vs " + p2.handle
   end
   
   def p1
