@@ -35,34 +35,37 @@
 				<!-- Games -->
 				<tbody>
 					<% @match.games.each do |game| %>
-						<tr class="game-<%= game.game_number %>">
-							<td><%= game.game_number %></td>
-							<td><%= game.map.name %></td>
-							<td>
-								<% if game.winner == @match.p1 %>
-								<span class="badge badge-success">
-									<%= game.race(@match.p1.id) %>
-									<i class="icon-ok"></i>
-								</span>
-								<% else %>
-									<%= game.race(@match.p1.id) %>
-								<% end %>
-							</td>
-							<td>vs.</td>
-							<td>
-								<% if game.winner == @match.p2 %>
-								<span class="badge badge-success">
-									<%= game.race(@match.p2.id) %>
-									<i class="icon-ok"></i>
-								</span>
-								<% else %>
-									<%= game.race(@match.p2.id) %>
-								<% end %>
-							</td>
-							<td>
-								<a href="#" class="load-video" data-embed="<%= game.video_link %>">Load</a>
-							</td>
-						</tr>
+					<tr class="game-<%= game.game_number %>">
+						<td><%= game.game_number %></td>
+						<td><%= game.map.name %></td>
+						<td>
+							<% if game.winner == @match.p1 %>
+							<span class="badge badge-success">
+								<%= game.race(@match.p1.id) %>
+								<i class="icon-ok"></i>
+							</span>
+							<% else %>
+								<%= game.race(@match.p1.id) %>
+							<% end %>
+						</td>
+						<td>vs.</td>
+						<td>
+							<% if game.winner == @match.p2 %>
+							<span class="badge badge-success">
+								<%= game.race(@match.p2.id) %>
+								<i class="icon-ok"></i>
+							</span>
+							<% else %>
+								<%= game.race(@match.p2.id) %>
+							<% end %>
+						</td>
+						<td>
+							<% disabled = game.video_link.empty? ? 'disabled' : '' %>
+							<button class="load-video btn btn-primary btn-mini <%= disabled %>" data-embed="<%= game.video_link %>">
+								Load Video
+							</button>
+						</td>
+					</tr>
 					<% end %>
 				</tbody>
 				<tfoot>
