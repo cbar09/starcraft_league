@@ -68,7 +68,11 @@
 				<tfoot>
 					<tr>
 						<th colspan="6" style="text-align: center;">
+							<% if @match.completed? %>
 							Winner: <%= @match.get_winner.handle %> <i class="icon-ok"></i>
+							<% else %>
+							Match in progress: <%= @match.score %>
+							<% end %>
 						</th>
 				</tfoot>
 			</table>
