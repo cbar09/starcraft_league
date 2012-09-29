@@ -1,6 +1,6 @@
 	
 	<td>
-	<%= f.association :player, :as => :hidden, :input_html => {:class => 'span2', :value => player.handle} %>
+		<%= f.association :player, :as => :hidden, :input_html => {:class => 'span2', :value => player.id} %>
 	
 	<%= f.association :race, 
 		:label => false, 

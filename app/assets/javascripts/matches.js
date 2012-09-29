@@ -30,6 +30,18 @@ $(document).on("click", ".winner", function(e){
 		row.find("input[type='checkbox']").removeAttr("disabled");
 	}
 })
+.on("click", "#display-games", function(e){
+	if($("#games-summary").is(':hidden')){
+		$("#games-summary").removeClass("hidden");
+		$(this).addClass("disabled");
+	}
+})
+.on("click", ".load-video", function(e){
+	embed = $(this).data("embed")
+	if(embed.length){
+		$("#player").empty().append(embed);
+	}
+})
 /*.on("submit", "form[id^='edit_match']", function(e){
 	var p1_wins = 0, p2_wins = 0;
 	var input_errors = false;

@@ -4,19 +4,95 @@
 
 <%- model_class = Match -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1>
+	  <%= @match.p1.handle %> vs. <%= @match.p2.handle %>
+	  <small>Week <%= @match.week %></small>
+  </h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:player1) %>:</strong></dt>
-  <dd><%= @match.players[0].handle %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:player2) %>:</strong></dt>
-  <dd><%= @match.players[1].handle %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:winner) %>:</strong></dt>
-  <dd><%= winner %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:week) %>:</strong></dt>
-  <dd><%= @match.week %></dd>
-</dl>
+<div class="row">
+	<!-- Games Summary Column -->
+	<div class="span5">
+		<h3>
+			Games Summary
+			<button id="display-games" class="pull-right btn btn-mini btn-primary">Show Results</button>
+		</h3>
+		<br/>
+		
+		<div id="games-summary" class="hidden">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Map</th>
+						<th><%= @match.p1.handle %></th>
+						<th>Vs.</th>
+						<th><%= @match.p2.handle %></th>
+						<th>Video</th>
+					</tr>
+				</thead>
+		
+				<!-- Games -->
+				<tbody>
+					<% @match.games.each do |game| %>
+						<tr class="game-<%= game.game_number %>">
+							<td><%= game.game_number %></td>
+							<td><%= game.map.name %></td>
+							<td>
+								<% if game.winner == @match.p1 %>
+								<span class="badge badge-success">
+									<%= game.race(@match.p1.id) %>
+									<i class="icon-ok"></i>
+								</span>
+								<% else %>
+									<%= game.race(@match.p1.id) %>
+								<% end %>
+							</td>
+							<td>vs.</td>
+							<td>
+								<% if game.winner == @match.p2 %>
+								<span class="badge badge-success">
+									<%= game.race(@match.p2.id) %>
+									<i class="icon-ok"></i>
+								</span>
+								<% else %>
+									<%= game.race(@match.p2.id) %>
+								<% end %>
+							</td>
+							<td>
+								<a href="#" class="load-video" data-embed="<%= game.video_link %>">Load</a>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+				<tfoot>
+					<tr>
+						<th colspan="6" style="text-align: center;">
+							Winner: <%= @match.get_winner.handle %> <i class="icon-ok"></i>
+						</th>
+				</tfoot>
+			</table>
+		</div><!-- /games-summary -->
+	</div>
+	
+	<!-- Embedded Video Column -->
+	<div class="span7">
+		<div class="well">
+			<h2>Video Player</h2>
+			<section id="player" style="min-height: 300px" class="border">
+				
+			</section>
+			<footer>
+				<h4>Load Videos</h4>
+				<% @match.games.each_with_index do |game, i| %>
+				<a href="#" class="load-video" data-embed="<%= game.video_link %>">Game <%= i+1 %></a>
+				<%= "|" unless i == @match.games.size - 1 %>
+				<% end %>
+			</footer> 
+		</div>
+	</div>
+	
+</div><!-- /Row -->
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
