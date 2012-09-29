@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918193644) do
+ActiveRecord::Schema.define(:version => 20120929070507) do
 
   create_table "divisions", :force => true do |t|
     t.string   "name"
@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(:version => 20120918193644) do
     t.integer  "game_number"
     t.integer  "match_id"
     t.integer  "map_id"
-    t.string   "video_link"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.text     "video_link"
   end
 
   create_table "games_players", :force => true do |t|
