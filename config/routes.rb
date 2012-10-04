@@ -1,5 +1,7 @@
 StarcraftLeague::Application.routes.draw do
 
+  resources :pages
+
     namespace :mercury do
       resources :images
     end
