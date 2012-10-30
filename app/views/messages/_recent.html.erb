@@ -1,9 +1,12 @@
+<div class="well">
 <h2>Message Board</h2>
 <br/>
 <% @messages.each do |message| %>
-	<div class="alert alert-block <%= message.alert %>">
-		<h4><span id="message_title_<%= message.id %>" class="mercury-region" data-type="editable"><%= message.title %></span></h4><br/>
-		<p><span id="message_content_<%= message.id %>" class="mercury-region" data-type="editable"><%= message.message %></span></p>
-	</div>
+	<article class="message">
+		<strong><%= message.title %></strong> 
+		<p class="text-<%= message.alert %>"><%= message.message %>
+	</article>
+	<hr>
 <% end %>
 <!--<p><%= link_to "Edit Messages", "/editor" + request.path %></p>-->
+</div>

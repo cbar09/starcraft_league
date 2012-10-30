@@ -1,8 +1,9 @@
-<h2>Weekly Schedule</h2>
+
 <div class="row">
 	<!-- Current Matches -->
 	<div class="span4">
 		<div class="alert alert-info">
+			<h2>Weekly Schedule</h2><hr/>
 			<h3>Week <%= Season.current_week(1) %> Matches</h3>
 			<ul class="match-list">
 				<% Match.current(1).each do |match| %>
@@ -23,14 +24,19 @@
 			<hr/>
 
 			<h3>Outstanding Matches</h3><br/>
+			<% outstanding = Match.outstanding(1) %>
+			<% if outstanding.empty? %>
+			<p>Congrats, there are no outstanding matches right now!</p>
+			<% else %>
 			<ul>
-			<% Match.outstanding(1).each do |match| %>
-				<li>
-					<span class="label label-important">Late</span>
-					<%= link_to match.display_vs , match_path(match.id) %> 
-				</li>
-			<% end %>
+				<% outstanding.each do |match| %>
+					<li>
+						<span class="label label-important">Late</span>
+						<%= link_to match.display , match_path(match.id) %> 
+					</li>
+				<% end %>
 			</ul>
+			<% end %>
 		</div>
 	</div>
 </div>

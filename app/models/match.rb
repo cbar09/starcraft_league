@@ -57,7 +57,7 @@ end
   
   
   def display
-    return "[week " + week.to_s + "] " + p1.handle + " vs " + p2.handle
+    return "#{p1.handle} vs. #{p2.handle} - [week #{week.to_s}]"
   end
   
   def display_vs
