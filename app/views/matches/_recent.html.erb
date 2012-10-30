@@ -5,7 +5,6 @@
 		<div class="alert alert-info">
 			<h2>Weekly Schedule</h2><hr/>
 			<h3>Week <%= Season.current_week(1) %> Matches</h3>
-			<h3>This Week's Matches [Week <% %>]</h3>
 			<ul class="match-list">
 				<% Match.current(1).each do |match| %>
 				<li>
