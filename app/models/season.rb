@@ -3,8 +3,25 @@ class Season < ActiveRecord::Base
   
   has_many :matches
   
+
   def self.current_week(season_id)
     day_of_season = (Date.today - Season.find(season_id).start_date).to_i
     return day_of_season >= 0 ? (day_of_season / 7) + 1 : 0 
+  end
+  def current_week
+    day_of_season = (Date.today - start_date).to_i
+    return day_of_season >= 0 ? (day_of_season / 7) + 1 : 0
+  end
+  
+  def end_season
+    return start_date + (weeks * 7)
+  end
+  
+  def end_playoffs
+    return start_date + (weeks + playoff_weeks) * 7
+  end
+  
+  def current?
+    return Date.today >= start_date && Date.today <= end_playoffs
   end
 end
