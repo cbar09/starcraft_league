@@ -23,4 +23,16 @@ class Player < ActiveRecord::Base
     division = Division.where("name = '#{division_name}'").first
     return Player.where("division_id = '#{division.id}'")
   end
+  
+  def get_wins
+    wins = 0
+    matches = Match.includes(:players).where("players.id", id)
+    matches.each do |match|
+      winner = match.get_winner
+      if(!winner.nil? && winner.id == id)
+        wins = wins + 1
+      end
+    end
+    return wins
+  end
 end
