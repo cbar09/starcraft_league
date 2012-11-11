@@ -1,12 +1,11 @@
-<div class="well">
+<div class="well well-small">
 <h2>Message Board</h2>
 <br/>
 <% @messages.each do |message| %>
-	<article class="message">
+	<article class="alert <%= message.alert %>">
 		<strong><%= message.title %></strong> 
-		<p class="text-<%= message.alert %>"><%= message.message %>
+		<p><%= message.message %>
 	</article>
-	<hr>
 <% end %>
 <!--<p><%= link_to "Edit Messages", "/editor" + request.path %></p>-->
 </div>

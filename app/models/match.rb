@@ -40,7 +40,7 @@ class Match < ActiveRecord::Base
     day_of_season = (Date.today - Season.find(season_id).start_date).to_i
     current_week = day_of_season >= 0 ? (day_of_season / 7) + 1 : 0 
     outstanding_matches = []
-    where("season_id='#{season_id}' AND week<'#{current_week}'").order("week").each do |match|
+    where("season_id='#{season_id}' AND week<'#{current_week}'").order("week"). each do |match|
         outstanding_matches.push(match) unless match.completed?
     end
   return outstanding_matches
@@ -86,6 +86,11 @@ end
   
   def get_winner
     return get_wins(p1) == 3 ? p1 : (get_wins(p2) == 3 ? p2 : nil)
+  end
+  
+  def get_loser
+    winner = get_winner
+    return winner.nil? ? nil : winner == p1 ? p2 : p1
   end
   
   def state

@@ -10,11 +10,17 @@
     </tr>
   </thead>
   <tbody>
-    <% division.players.each do |player| %>
+    <% division.players.sort.each do |player| %>
       <tr>
         <td><%= link_to player.handle, player_path(player) %></td>
-        <td><%= (rand * 10).round %> - <%= (rand * 10).round %></td>
-		<td><%= (rand * 1000).round / 1000.0 %> </td>
+		<% 
+			wins = player.wins 
+			losses = player.losses
+			pct = "N/A"
+			pct = wins / (wins + losses) unless wins + losses == 0
+		%>
+        <td><%= wins %> - <%= losses %></td>
+		<td><%= number_with_precision(pct, :precision => 3) %> </td>
 		<td></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
