@@ -62,8 +62,6 @@ class Player < ActiveRecord::Base
   def <=>(other_player)
     other_player.pct <=> pct
   end
-  
-  
 end
 
 
